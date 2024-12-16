@@ -1,76 +1,35 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: white;
+  font-family: 'Arial', sans-serif;
 }
 
-header {
-    background-color: #333;
-    padding: 10px 20px;
+.neon-text {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #ff007f;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
+  animation: blink 1s infinite alternate;
 }
 
-h1 {
-    color: #ff0000;
-    margin: 0;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #ff0000;
-}
-
-main {
-    padding: 20px;
-}
-
-.film-detail {
-    background-color: #1a1a1a;
-    border: 1px solid #444;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.film-detail h2 {
-    margin-top: 0;
-    color: #ff0000;
-}
-
-.rating {
-    color: #ffcc00;
-}
-
-button.add-review {
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button.add-review:hover {
-    background-color: #cc0000;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+@keyframes blink {
+  0% {
+    opacity: 1;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
+  }
 }
