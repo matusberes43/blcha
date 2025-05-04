@@ -27,7 +27,7 @@
     .table-wrapper {
       width: 95%;
       margin: auto;
-      overflow-x: auto; /* Responzivita pro mobily */
+      overflow-x: auto;
     }
     table {
       width: 100%;
@@ -53,13 +53,12 @@
     .overcome {
       background-color: #ffe5e5;
     }
-    /* Styl pro řádek PunisherEDNA */
     .punisher-row {
       background-color: #ffe600;
       font-weight: bold;
       border: 2px solid #000;
     }
-    /* Pulzující animace pro varování */
+    /* Animace pro posledních 24 hodin (červená) */
     @keyframes softPulse {
       0%, 100% { background-color: inherit; }
       50% { background-color: #ffe5e5; }
@@ -73,6 +72,21 @@
     }
     body.dark .pulse-warning {
       animation: softPulseDark 2.5s ease-in-out infinite;
+    }
+    /* Nová animace pro < 1 měsíc (oranžová) */
+    @keyframes softPulseMonth {
+      0%, 100% { background-color: inherit; }
+      50% { background-color: #ffedd5; }
+    }
+    @keyframes softPulseMonthDark {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: rgba(249, 115, 22, 0.1); }
+    }
+    .month-warning {
+      animation: softPulseMonth 2.5s ease-in-out infinite;
+    }
+    body.dark .month-warning {
+      animation: softPulseMonthDark 2.5s ease-in-out infinite;
     }
     /* Tmavý režim */
     body.dark {
@@ -137,7 +151,6 @@
       background: linear-gradient(90deg, #86efac, #4ade80);
       color: #000;
     }
-    /* Styl pro překonaný stav */
     .prekonan {
       color: #ef4444;
       font-weight: 800;
@@ -164,95 +177,95 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>corpSy 🥇</td><td>23867</td><td>482</td><td>29.08.2026</td><td><span id="countdown-1"></span></td></tr>
-        <tr><td>2</td><td>T2 🥈</td><td>19982</td><td>385</td><td>24.05.2026</td><td><span id="countdown-2"></span></td></tr>
-        <tr><td>3</td><td>Marze 🥉</td><td>19026</td><td>361</td><td>30.04.2026</td><td><span id="countdown-3"></span></td></tr>
-        <tr><td>4</td><td>rivah</td><td>18302</td><td>343</td><td>12.04.2026</td><td><span id="countdown-4"></span></td></tr>
-        <tr><td>5</td><td>sator</td><td>16740</td><td>304</td><td>04.03.2026</td><td><span id="countdown-5"></span></td></tr>
-        <tr><td>6</td><td>Martin741</td><td>16430</td><td>296</td><td>24.02.2026</td><td><span id="countdown-6"></span></td></tr>
-        <tr><td>7</td><td>LUKICKK</td><td>14075</td><td>237</td><td>27.12.2025</td><td><span id="countdown-7"></span></td></tr>
-        <tr><td>8</td><td>Anderton</td><td>13099</td><td>213</td><td>03.12.2025</td><td><span id="countdown-8"></span></td></tr>
-        <tr><td>9</td><td>Arsenal83</td><td>13063</td><td>212</td><td>02.12.2025</td><td><span id="countdown-9"></span></td></tr>
-        <tr><td>10</td><td>Loki_Six</td><td>12099</td><td>188</td><td>08.11.2025</td><td><span id="countdown-10"></span></td></tr>
-        <tr><td>11</td><td>kaylin</td><td>11810</td><td>180</td><td>31.10.2025</td><td><span id="countdown-11"></span></td></tr>
-        <tr><td>12</td><td>Chrustyn</td><td>10631</td><td>151</td><td>02.10.2025</td><td><span id="countdown-12"></span></td></tr>
-        <tr><td>13</td><td>Tommasi3</td><td>9282</td><td>117</td><td>29.08.2025</td><td><span id="countdown-13"></span></td></tr>
-        <tr><td>14</td><td>SOLOM.</td><td>8963</td><td>109</td><td>21.08.2025</td><td><span id="countdown-14"></span></td></tr>
-        <tr><td>15</td><td>Necrotongue</td><td>8863</td><td>107</td><td>19.08.2025</td><td><span id="countdown-15"></span></td></tr>
-        <tr><td>16</td><td>tranquill</td><td>8819</td><td>106</td><td>18.08.2025</td><td><span id="countdown-16"></span></td></tr>
-        <tr><td>17</td><td>honajz2</td><td>8743</td><td>104</td><td>16.08.2025</td><td><span id="countdown-17"></span></td></tr>
-        <tr><td>18</td><td>Houdini</td><td>8727</td><td>103</td><td>15.08.2025</td><td><span id="countdown-18"></span></td></tr>
-        <tr><td>19</td><td>LiVentura</td><td>8610</td><td>100</td><td>12.08.2025</td><td><span id="countdown-19"></span></td></tr>
-        <tr><td>20</td><td>ARI50</td><td>8475</td><td>97</td><td>09.08.2025</td><td><span id="countdown-20"></span></td></tr>
-        <tr><td>21</td><td>SeBig</td><td>8349</td><td>94</td><td>06.08.2025</td><td><span id="countdown-21"></span></td></tr>
-        <tr><td>22</td><td>Terva</td><td>8222</td><td>91</td><td>03.08.2025</td><td><span id="countdown-22"></span></td></tr>
-        <tr><td>23</td><td>Juto</td><td>8206</td><td>90</td><td>02.08.2025</td><td><span id="countdown-23"></span></td></tr>
-        <tr><td>24</td><td>majo25</td><td>8097</td><td>88</td><td>31.07.2025</td><td><span id="countdown-24"></span></td></tr>
-        <tr><td>25</td><td>Malarkey</td><td>8002</td><td>85</td><td>28.07.2025</td><td><span id="countdown-25"></span></td></tr>
-        <tr><td>26</td><td>ostravak30</td><td>7971</td><td>84</td><td>27.07.2025</td><td><span id="countdown-26"></span></td></tr>
-        <tr><td>27</td><td>castor</td><td>7942</td><td>84</td><td>27.07.2025</td><td><span id="countdown-27"></span></td></tr>
-        <tr><td>28</td><td>honajz</td><td>7931</td><td>83</td><td>26.07.2025</td><td><span id="countdown-28"></span></td></tr>
-        <tr><td>29</td><td>NinadeL</td><td>7669</td><td>77</td><td>20.07.2025</td><td><span id="countdown-29"></span></td></tr>
-        <tr><td>30</td><td>mira007</td><td>7362</td><td>69</td><td>12.07.2025</td><td><span id="countdown-30"></span></td></tr>
-        <tr><td>31</td><td>Autogram</td><td>7300</td><td>68</td><td>11.07.2025</td><td><span id="countdown-31"></span></td></tr>
-        <tr><td>32</td><td>Morholt</td><td>7099</td><td>63</td><td>06.07.2025</td><td><span id="countdown-32"></span></td></tr>
-        <tr><td>33</td><td>Lacike</td><td>7079</td><td>62</td><td>05.07.2025</td><td><span id="countdown-33"></span></td></tr>
-        <tr><td>34</td><td>MM_Ramone</td><td>7029</td><td>61</td><td>04.07.2025</td><td><span id="countdown-34"></span></td></tr>
-        <tr><td>35</td><td>Paity</td><td>6928</td><td>58</td><td>01.07.2025</td><td><span id="countdown-35"></span></td></tr>
-        <tr><td>36</td><td>M.i.k.e</td><td>6837</td><td>56</td><td>29.06.2025</td><td><span id="countdown-36"></span></td></tr>
-        <tr><td>37</td><td>Hapretor</td><td>6666</td><td>52</td><td>25.06.2025</td><td><span id="countdown-37"></span></td></tr>
-        <tr><td>38</td><td>tron</td><td>6601</td><td>50</td><td>23.06.2025</td><td><span id="countdown-38"></span></td></tr>
-        <tr><td>39</td><td>Flego</td><td>6521</td><td>48</td><td>21.06.2025</td><td><span id="countdown-39"></span></td></tr>
-        <tr><td>40</td><td>Jara.Cimrman.jr</td><td>6500</td><td>48</td><td>21.06.2025</td><td><span id="countdown-40"></span></td></tr>
-        <tr><td>41</td><td>MickeyStuma</td><td>6347</td><td>44</td><td>17.06.2025</td><td><span id="countdown-41"></span></td></tr>
-        <tr><td>42</td><td>Snorlax</td><td>6174</td><td>39</td><td>12.06.2025</td><td><span id="countdown-42"></span></td></tr>
-        <tr><td>43</td><td>Johnny.ARN</td><td>6170</td><td>39</td><td>12.06.2025</td><td><span id="countdown-43"></span></td></tr>
-        <tr><td>44</td><td>Pitryx</td><td>6100</td><td>38</td><td>11.06.2025</td><td><span id="countdown-44"></span></td></tr>
-        <tr><td>45</td><td>nessbeal</td><td>6079</td><td>37</td><td>10.06.2025</td><td><span id="countdown-45"></span></td></tr>
-        <tr><td>46</td><td>kingik</td><td>6059</td><td>37</td><td>10.06.2025</td><td><span id="countdown-46"></span></td></tr>
-        <tr><td>47</td><td>*CARNIFEX*</td><td>6008</td><td>35</td><td>08.06.2025</td><td><span id="countdown-47"></span></td></tr>
-        <tr><td>48</td><td>darkrobyk</td><td>5968</td><td>34</td><td>07.06.2025</td><td><span id="countdown-48"></span></td></tr>
-        <tr><td>49</td><td>vitekpe</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-49"></span></td></tr>
-        <tr><td>50</td><td>Teachman</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-50"></span></td></tr>
-        <tr><td>51</td><td>JohnSmith</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-51"></span></td></tr>
-        <tr><td>52</td><td>slunicko2</td><td>5770</td><td>29</td><td>02.06.2025</td><td><span id="countdown-52"></span></td></tr>
-        <tr><td>53</td><td>otík</td><td>5769</td><td>29</td><td>02.06.2025</td><td><span id="countdown-53"></span></td></tr>
-        <tr><td>54</td><td>Frajer42</td><td>5763</td><td>29</td><td>02.06.2025</td><td><span id="countdown-54"></span></td></tr>
-        <tr><td>55</td><td>Trevor</td><td>5753</td><td>29</td><td>02.06.2025</td><td><span id="countdown-55"></span></td></tr>
-        <tr><td>56</td><td>zette</td><td>5715</td><td>28</td><td>01.06.2025</td><td><span id="countdown-56"></span></td></tr>
-        <tr><td>57</td><td>Enšpígl</td><td>5521</td><td>23</td><td>27.05.2025</td><td><span id="countdown-57"></span></td></tr>
-        <tr><td>58</td><td>d-fens</td><td>5410</td><td>20</td><td>24.05.2025</td><td><span id="countdown-58"></span></td></tr>
-        <tr><td>59</td><td>C0r0ner</td><td>5371</td><td>19</td><td>23.05.2025</td><td><span id="countdown-59"></span></td></tr>
-        <tr><td>60</td><td>misterz</td><td>5322</td><td>18</td><td>22.05.2025</td><td><span id="countdown-60"></span></td></tr>
-        <tr><td>61</td><td>ghatos</td><td>5254</td><td>16</td><td>20.05.2025</td><td><span id="countdown-61"></span></td></tr>
-        <tr><td>62</td><td>iXtr3m3</td><td>5236</td><td>16</td><td>20.05.2025</td><td><span id="countdown-62"></span></td></tr>
-        <tr><td>63</td><td>ScarPoul</td><td>5184</td><td>15</td><td>19.05.2025</td><td><span id="countdown-63"></span></td></tr>
-        <tr><td>64</td><td>Gilmour93</td><td>5181</td><td>15</td><td>19.05.2025</td><td><span id="countdown-64"></span></td></tr>
-        <tr><td>65</td><td>Likan7</td><td>5134</td><td>13</td><td>17.05.2025</td><td><span id="countdown-65"></span></td></tr>
-        <tr><td>66</td><td>Slarque</td><td>5035</td><td>11</td><td>15.05.2025</td><td><span id="countdown-66"></span></td></tr>
-        <tr><td>67</td><td>KajusaK</td><td>4963</td><td>9</td><td>13.05.2025</td><td><span id="countdown-67"></span></td></tr>
-        <tr><td>68</td><td>eraserhead666</td><td>4951</td><td>9</td><td>13.05.2025</td><td><span id="countdown-68"></span></td></tr>
-        <tr><td>69</td><td>warrenuR</td><td>4946</td><td>9</td><td>13.05.2025</td><td><span id="countdown-69"></span></td></tr>
-        <tr><td>70</td><td>Xmilden</td><td>4933</td><td>8</td><td>12.05.2025</td><td><span id="countdown-70"></span></td></tr>
-        <tr><td>71</td><td>dopitak</td><td>4919</td><td>8</td><td>12.05.2025</td><td><span id="countdown-71"></span></td></tr>
-        <tr><td>72</td><td>blackrain</td><td>4881</td><td>7</td><td>11.05.2025</td><td><span id="countdown-72"></span></td></tr>
-        <tr><td>73</td><td>pornogrind</td><td>4872</td><td>7</td><td>11.05.2025</td><td><span id="countdown-73"></span></td></tr>
-        <tr><td>74</td><td>xxmartinxx</td><td>4842</td><td>6</td><td>10.05.2025</td><td><span id="countdown-74"></span></td></tr>
-        <tr><td>75</td><td>brasek</td><td>4804</td><td>5</td><td>09.05.2025</td><td><span id="countdown-75"></span></td></tr>
-        <tr><td>76</td><td>Kimkong</td><td>4760</td><td>4</td><td>08.05.2025</td><td><span id="countdown-76"></span></td></tr>
-        <tr><td>77</td><td>BOURQUE</td><td>4750</td><td>4</td><td>08.05.2025</td><td><span id="countdown-77"></span></td></tr>
-        <tr><td>78</td><td>rakovnik</td><td>4741</td><td>4</td><td>08.05.2025</td><td><span id="countdown-78"></span></td></tr>
-        <tr><td>79</td><td>bohemia_regent</td><td>4719</td><td>3</td><td>07.05.2025</td><td><span id="countdown-79"></span></td></tr>
-        <tr><td>80</td><td>Hanys_</td><td>4708</td><td>3</td><td>07.05.2025</td><td><span id="countdown-80"></span></td></tr>
-        <tr><td>81</td><td>dr.fish</td><td>4689</td><td>2</td><td>06.05.2025</td><td><span id="countdown-81"></span></td></tr>
-        <tr><td>82</td><td>Fr</td><td>4687</td><td>2</td><td>06.05.2025</td><td><span id="countdown-82"></span></td></tr>
-        <tr><td>83</td><td>Wacoslav1</td><td>4671</td><td>2</td><td>06.05.2025</td><td><span id="countdown-83"></span></td></tr>
-        <tr><td>84</td><td>EvilPhoEniX</td><td>4659</td><td>2</td><td>06.05.2025</td><td><span id="countdown-84"></span></td></tr>
-        <tr><td>85</td><td>bourec</td><td>4652</td><td>1</td><td>05.05.2025</td><td><span id="countdown-85"></span></td></tr>
-        <tr><td>86</td><td>Aljak</td><td>4646</td><td>1</td><td>05.05.2025</td><td><span id="countdown-86"></span></td></tr>
-        <tr><td>87</td><td>Rathalos</td><td>4641</td><td>1</td><td>05.05.2025</td><td><span id="countdown-87"></span></td></tr>
-        <tr><td>88</td><td>Radko</td><td>4628</td><td>1</td><td>05.05.2025</td><td><span id="countdown-88"></span></td></tr>
-        <tr><td>89</td><td>blondboss</td><td>4619</td><td>1</td><td>05.05.2025</td><td><span id="countdown-89"></span></td></tr>
+        <tr><td>1</td><td>corpSy 🥇</td><td>23867</td><td>482</td><td>29.08.2026</td><td><span id="countdown-1" data-target-date="2026-08-29"></span></td></tr>
+        <tr><td>2</td><td>T2 🥈</td><td>19982</td><td>385</td><td>24.05.2026</td><td><span id="countdown-2" data-target-date="2026-05-24"></span></td></tr>
+        <tr><td>3</td><td>Marze 🥉</td><td>19026</td><td>361</td><td>30.04.2026</td><td><span id="countdown-3" data-target-date="2026-04-30"></span></td></tr>
+        <tr><td>4</td><td>rivah</td><td>18302</td><td>343</td><td>12.04.2026</td><td><span id="countdown-4" data-target-date="2026-04-12"></span></td></tr>
+        <tr><td>5</td><td>sator</td><td>16740</td><td>304</td><td>04.03.2026</td><td><span id="countdown-5" data-target-date="2026-03-04"></span></td></tr>
+        <tr><td>6</td><td>Martin741</td><td>16430</td><td>296</td><td>24.02.2026</td><td><span id="countdown-6" data-target-date="2026-02-24"></span></td></tr>
+        <tr><td>7</td><td>LUKICKK</td><td>14075</td><td>237</td><td>27.12.2025</td><td><span id="countdown-7" data-target-date="2025-12-27"></span></td></tr>
+        <tr><td>8</td><td>Anderton</td><td>13099</td><td>213</td><td>03.12.2025</td><td><span id="countdown-8" data-target-date="2025-12-03"></span></td></tr>
+        <tr><td>9</td><td>Arsenal83</td><td>13063</td><td>212</td><td>02.12.2025</td><td><span id="countdown-9" data-target-date="2025-12-02"></span></td></tr>
+        <tr><td>10</td><td>Loki_Six</td><td>12099</td><td>188</td><td>08.11.2025</td><td><span id="countdown-10" data-target-date="2025-11-08"></span></td></tr>
+        <tr><td>11</td><td>kaylin</td><td>11810</td><td>180</td><td>31.10.2025</td><td><span id="countdown-11" data-target-date="2025-10-31"></span></td></tr>
+        <tr><td>12</td><td>Chrustyn</td><td>10631</td><td>151</td><td>02.10.2025</td><td><span id="countdown-12" data-target-date="2025-10-02"></span></td></tr>
+        <tr><td>13</td><td>Tommasi3</td><td>9282</td><td>117</td><td>29.08.2025</td><td><span id="countdown-13" data-target-date="2025-08-29"></span></td></tr>
+        <tr><td>14</td><td>SOLOM.</td><td>8963</td><td>109</td><td>21.08.2025</td><td><span id="countdown-14" data-target-date="2025-08-21"></span></td></tr>
+        <tr><td>15</td><td>Necrotongue</td><td>8863</td><td>107</td><td>19.08.2025</td><td><span id="countdown-15" data-target-date="2025-08-19"></span></td></tr>
+        <tr><td>16</td><td>tranquill</td><td>8819</td><td>106</td><td>18.08.2025</td><td><span id="countdown-16" data-target-date="2025-08-18"></span></td></tr>
+        <tr><td>17</td><td>honajz2</td><td>8743</td><td>104</td><td>16.08.2025</td><td><span id="countdown-17" data-target-date="2025-08-16"></span></td></tr>
+        <tr><td>18</td><td>Houdini</td><td>8727</td><td>103</td><td>15.08.2025</td><td><span id="countdown-18" data-target-date="2025-08-15"></span></td></tr>
+        <tr><td>19</td><td>LiVentura</td><td>8610</td><td>100</td><td>12.08.2025</td><td><span id="countdown-19" data-target-date="2025-08-12"></span></td></tr>
+        <tr><td>20</td><td>ARI50</td><td>8475</td><td>97</td><td>09.08.2025</td><td><span id="countdown-20" data-target-date="2025-08-09"></span></td></tr>
+        <tr><td>21</td><td>SeBig</td><td>8349</td><td>94</td><td>06.08.2025</td><td><span id="countdown-21" data-target-date="2025-08-06"></span></td></tr>
+        <tr><td>22</td><td>Terva</td><td>8222</td><td>91</td><td>03.08.2025</td><td><span id="countdown-22" data-target-date="2025-08-03"></span></td></tr>
+        <tr><td>23</td><td>Juto</td><td>8206</td><td>90</td><td>02.08.2025</td><td><span id="countdown-23" data-target-date="2025-08-02"></span></td></tr>
+        <tr><td>24</td><td>majo25</td><td>8097</td><td>88</td><td>31.07.2025</td><td><span id="countdown-24" data-target-date="2025-07-31"></span></td></tr>
+        <tr><td>25</td><td>Malarkey</td><td>8002</td><td>85</td><td>28.07.2025</td><td><span id="countdown-25" data-target-date="2025-07-28"></span></td></tr>
+        <tr><td>26</td><td>ostravak30</td><td>7971</td><td>84</td><td>27.07.2025</td><td><span id="countdown-26" data-target-date="2025-07-27"></span></td></tr>
+        <tr><td>27</td><td>castor</td><td>7942</td><td>84</td><td>27.07.2025</td><td><span id="countdown-27" data-target-date="2025-07-27"></span></td></tr>
+        <tr><td>28</td><td>honajz</td><td>7931</td><td>83</td><td>26.07.2025</td><td><span id="countdown-28" data-target-date="2025-07-26"></span></td></tr>
+        <tr><td>29</td><td>NinadeL</td><td>7669</td><td>77</td><td>20.07.2025</td><td><span id="countdown-29" data-target-date="2025-07-20"></span></td></tr>
+        <tr><td>30</td><td>mira007</td><td>7362</td><td>69</td><td>12.07.2025</td><td><span id="countdown-30" data-target-date="2025-07-12"></span></td></tr>
+        <tr><td>31</td><td>Autogram</td><td>7300</td><td>68</td><td>11.07.2025</td><td><span id="countdown-31" data-target-date="2025-07-11"></span></td></tr>
+        <tr><td>32</td><td>Morholt</td><td>7099</td><td>63</td><td>06.07.2025</td><td><span id="countdown-32" data-target-date="2025-07-06"></span></td></tr>
+        <tr><td>33</td><td>Lacike</td><td>7079</td><td>62</td><td>05.07.2025</td><td><span id="countdown-33" data-target-date="2025-07-05"></span></td></tr>
+        <tr><td>34</td><td>MM_Ramone</td><td>7029</td><td>61</td><td>04.07.2025</td><td><span id="countdown-34" data-target-date="2025-07-04"></span></td></tr>
+        <tr><td>35</td><td>Paity</td><td>6928</td><td>58</td><td>01.07.2025</td><td><span id="countdown-35" data-target-date="2025-07-01"></span></td></tr>
+        <tr><td>36</td><td>M.i.k.e</td><td>6837</td><td>56</td><td>29.06.2025</td><td><span id="countdown-36" data-target-date="2025-06-29"></span></td></tr>
+        <tr><td>37</td><td>Hapretor</td><td>6666</td><td>52</td><td>25.06.2025</td><td><span id="countdown-37" data-target-date="2025-06-25"></span></td></tr>
+        <tr><td>38</td><td>tron</td><td>6601</td><td>50</td><td>23.06.2025</td><td><span id="countdown-38" data-target-date="2025-06-23"></span></td></tr>
+        <tr><td>39</td><td>Flego</td><td>6521</td><td>48</td><td>21.06.2025</td><td><span id="countdown-39" data-target-date="2025-06-21"></span></td></tr>
+        <tr><td>40</td><td>Jara.Cimrman.jr</td><td>6500</td><td>48</td><td>21.06.2025</td><td><span id="countdown-40" data-target-date="2025-06-21"></span></td></tr>
+        <tr><td>41</td><td>MickeyStuma</td><td>6347</td><td>44</td><td>17.06.2025</td><td><span id="countdown-41" data-target-date="2025-06-17"></span></td></tr>
+        <tr><td>42</td><td>Snorlax</td><td>6174</td><td>39</td><td>12.06.2025</td><td><span id="countdown-42" data-target-date="2025-06-12"></span></td></tr>
+        <tr><td>43</td><td>Johnny.ARN</td><td>6170</td><td>39</td><td>12.06.2025</td><td><span id="countdown-43" data-target-date="2025-06-12"></span></td></tr>
+        <tr><td>44</td><td>Pitryx</td><td>6100</td><td>38</td><td>11.06.2025</td><td><span id="countdown-44" data-target-date="2025-06-11"></span></td></tr>
+        <tr><td>45</td><td>nessbeal</td><td>6079</td><td>37</td><td>10.06.2025</td><td><span id="countdown-45" data-target-date="2025-06-10"></span></td></tr>
+        <tr><td>46</td><td>kingik</td><td>6059</td><td>37</td><td>10.06.2025</td><td><span id="countdown-46" data-target-date="2025-06-10"></span></td></tr>
+        <tr><td>47</td><td>*CARNIFEX*</td><td>6008</td><td>35</td><td>08.06.2025</td><td><span id="countdown-47" data-target-date="2025-06-08"></span></td></tr>
+        <tr><td>48</td><td>darkrobyk</td><td>5968</td><td>34</td><td>07.06.2025</td><td><span id="countdown-48" data-target-date="2025-06-07"></span></td></tr>
+        <tr><td>49</td><td>vitekpe</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-49" data-target-date="2025-06-06"></span></td></tr>
+        <tr><td>50</td><td>Teachman</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-50" data-target-date="2025-06-06"></span></td></tr>
+        <tr><td>51</td><td>JohnSmith</td><td>5908</td><td>33</td><td>06.06.2025</td><td><span id="countdown-51" data-target-date="2025-06-06"></span></td></tr>
+        <tr><td>52</td><td>slunicko2</td><td>5770</td><td>29</td><td>02.06.2025</td><td><span id="countdown-52" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>53</td><td>otík</td><td>5769</td><td>29</td><td>02.06.2025</td><td><span id="countdown-53" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>54</td><td>Frajer42</td><td>5763</td><td>29</td><td>02.06.2025</td><td><span id="countdown-54" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>55</td><td>Trevor</td><td>5753</td><td>29</td><td>02.06.2025</td><td><span id="countdown-55" data-target-date="2025-06-02"></span></td></tr>
+        <tr><td>56</td><td>zette</td><td>5715</td><td>28</td><td>01.06.2025</td><td><span id="countdown-56" data-target-date="2025-06-01"></span></td></tr>
+        <tr><td>57</td><td>Enšpígl</td><td>5521</td><td>23</td><td>27.05.2025</td><td><span id="countdown-57" data-target-date="2025-05-27"></span></td></tr>
+        <tr><td>58</td><td>d-fens</td><td>5410</td><td>20</td><td>24.05.2025</td><td><span id="countdown-58" data-target-date="2025-05-24"></span></td></tr>
+        <tr><td>59</td><td>C0r0ner</td><td>5371</td><td>19</td><td>23.05.2025</td><td><span id="countdown-59" data-target-date="2025-05-23"></span></td></tr>
+        <tr><td>60</td><td>misterz</td><td>5322</td><td>18</td><td>22.05.2025</td><td><span id="countdown-60" data-target-date="2025-05-22"></span></td></tr>
+        <tr><td>61</td><td>ghatos</td><td>5254</td><td>16</td><td>20.05.2025</td><td><span id="countdown-61" data-target-date="2025-05-20"></span></td></tr>
+        <tr><td>62</td><td>iXtr3m3</td><td>5236</td><td>16</td><td>20.05.2025</td><td><span id="countdown-62" data-target-date="2025-05-20"></span></td></tr>
+        <tr><td>63</td><td>ScarPoul</td><td>5184</td><td>15</td><td>19.05.2025</td><td><span id="countdown-63" data-target-date="2025-05-19"></span></td></tr>
+        <tr><td>64</td><td>Gilmour93</td><td>5181</td><td>15</td><td>19.05.2025</td><td><span id="countdown-64" data-target-date="2025-05-19"></span></td></tr>
+        <tr><td>65</td><td>Likan7</td><td>5134</td><td>13</td><td>17.05.2025</td><td><span id="countdown-65" data-target-date="2025-05-17"></span></td></tr>
+        <tr><td>66</td><td>Slarque</td><td>5035</td><td>11</td><td>15.05.2025</td><td><span id="countdown-66" data-target-date="2025-05-15"></span></td></tr>
+        <tr><td>67</td><td>KajusaK</td><td>4963</td><td>9</td><td>13.05.2025</td><td><span id="countdown-67" data-target-date="2025-05-13"></span></td></tr>
+        <tr><td>68</td><td>eraserhead666</td><td>4951</td><td>9</td><td>13.05.2025</td><td><span id="countdown-68" data-target-date="2025-05-13"></span></td></tr>
+        <tr><td>69</td><td>warrenuR</td><td>4946</td><td>9</td><td>13.05.2025</td><td><span id="countdown-69" data-target-date="2025-05-13"></span></td></tr>
+        <tr><td>70</td><td>Xmilden</td><td>4933</td><td>8</td><td>12.05.2025</td><td><span id="countdown-70" data-target-date="2025-05-12"></span></td></tr>
+        <tr><td>71</td><td>dopitak</td><td>4919</td><td>8</td><td>12.05.2025</td><td><span id="countdown-71" data-target-date="2025-05-12"></span></td></tr>
+        <tr><td>72</td><td>blackrain</td><td>4881</td><td>7</td><td>11.05.2025</td><td><span id="countdown-72" data-target-date="2025-05-11"></span></td></tr>
+        <tr><td>73</td><td>pornogrind</td><td>4872</td><td>7</td><td>11.05.2025</td><td><span id="countdown-73" data-target-date="2025-05-11"></span></td></tr>
+        <tr><td>74</td><td>xxmartinxx</td><td>4842</td><td>6</td><td>10.05.2025</td><td><span id="countdown-74" data-target-date="2025-05-10"></span></td></tr>
+        <tr><td>75</td><td>brasek</td><td>4804</td><td>5</td><td>09.05.2025</td><td><span id="countdown-75" data-target-date="2025-05-09"></span></td></tr>
+        <tr><td>76</td><td>Kimkong</td><td>4760</td><td>4</td><td>08.05.2025</td><td><span id="countdown-76" data-target-date="2025-05-08"></span></td></tr>
+        <tr><td>77</td><td>BOURQUE</td><td>4750</td><td>4</td><td>08.05.2025</td><td><span id="countdown-77" data-target-date="2025-05-08"></span></td></tr>
+        <tr><td>78</td><td>rakovnik</td><td>4741</td><td>4</td><td>08.05.2025</td><td><span id="countdown-78" data-target-date="2025-05-08"></span></td></tr>
+        <tr><td>79</td><td>bohemia_regent</td><td>4719</td><td>3</td><td>07.05.2025</td><td><span id="countdown-79" data-target-date="2025-05-07"></span></td></tr>
+        <tr><td>80</td><td>Hanys_</td><td>4708</td><td>3</td><td>07.05.2025</td><td><span id="countdown-80" data-target-date="2025-05-07"></span></td></tr>
+        <tr><td>81</td><td>dr.fish</td><td>4689</td><td>2</td><td>06.05.2025</td><td><span id="countdown-81" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>82</td><td>Fr</td><td>4687</td><td>2</td><td>06.05.2025</td><td><span id="countdown-82" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>83</td><td>Wacoslav1</td><td>4671</td><td>2</td><td>06.05.2025</td><td><span id="countdown-83" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>84</td><td>EvilPhoEniX</td><td>4659</td><td>2</td><td>06.05.2025</td><td><span id="countdown-84" data-target-date="2025-05-06"></span></td></tr>
+        <tr><td>85</td><td>bourec</td><td>4652</td><td>1</td><td>05.05.2025</td><td><span id="countdown-85" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>86</td><td>Aljak</td><td>4646</td><td>1</td><td>05.05.2025</td><td><span id="countdown-86" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>87</td><td>Rathalos</td><td>4641</td><td>1</td><td>05.05.2025</td><td><span id="countdown-87" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>88</td><td>Radko</td><td>4628</td><td>1</td><td>05.05.2025</td><td><span id="countdown-88" data-target-date="2025-05-05"></span></td></tr>
+        <tr><td>89</td><td>blondboss</td><td>4619</td><td>1</td><td>05.05.2025</td><td><span id="countdown-89" data-target-date="2025-05-05"></span></td></tr>
       </tbody>
     </table>
   </div>
@@ -290,123 +303,42 @@
       });
     }
 
-    // Spuštění odpočtu pro jednotlivé uživatele
-    function startCountdown(id, targetDateStr) {
-      const target = new Date(targetDateStr);
-      function update() {
+    // Optimalizovaný odpočet s blikáním
+    function updateAllCountdowns() {
+      document.querySelectorAll("[id^=countdown]").forEach(span => {
+        const targetDate = span.dataset.targetDate;
+        const target = new Date(targetDate);
         const now = new Date();
         const diff = target - now;
+        const row = span.closest("tr");
+
+        // Odebrání předchozích tříd
+        row.classList.remove("pulse-warning", "month-warning");
+
         if (diff <= 0) {
-          const el = document.getElementById(id);
-          el.innerText = "Překonán!";
-          el.classList.add("prekonan");
+          span.innerText = "Překonán!";
+          span.classList.add("prekonan");
           return;
         }
-        const row = document.getElementById(id).closest("tr");
+
+        // Blikání pro < 24 hodin (červená)
         if (diff <= 24 * 60 * 60 * 1000) {
           row.classList.add("pulse-warning");
         }
+        // Blikání pro < 1 měsíc, ale > 24 hodin (oranžová)
+        else if (diff <= 30 * 24 * 60 * 60 * 1000) {
+          row.classList.add("month-warning");
+        }
+
         const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30));
         const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
-        document.getElementById(id).innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
-      }
-      update();
-      setInterval(update, 1000);
+        span.innerText = `${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      });
     }
-
-    // Inicializace odpočtů pro všechny uživatele
-    startCountdown("countdown-1", "2026-08-29");
-    startCountdown("countdown-2", "2026-05-24");
-    startCountdown("countdown-3", "2026-04-30");
-    startCountdown("countdown-4", "2026-04-12");
-    startCountdown("countdown-5", "2026-03-04");
-    startCountdown("countdown-6", "2026-02-24");
-    startCountdown("countdown-7", "2025-12-27");
-    startCountdown("countdown-8", "2025-12-03");
-    startCountdown("countdown-9", "2025-12-02");
-    startCountdown("countdown-10", "2025-11-08");
-    startCountdown("countdown-11", "2025-10-31");
-    startCountdown("countdown-12", "2025-10-02");
-    startCountdown("countdown-13", "2025-08-29");
-    startCountdown("countdown-14", "2025-08-21");
-    startCountdown("countdown-15", "2025-08-19");
-    startCountdown("countdown-16", "2025-08-18");
-    startCountdown("countdown-17", "2025-08-16");
-    startCountdown("countdown-18", "2025-08-15");
-    startCountdown("countdown-19", "2025-08-12");
-    startCountdown("countdown-20", "2025-08-09");
-    startCountdown("countdown-21", "2025-08-06");
-    startCountdown("countdown-22", "2025-08-03");
-    startCountdown("countdown-23", "2025-08-02");
-    startCountdown("countdown-24", "2025-07-31");
-    startCountdown("countdown-25", "2025-07-28");
-    startCountdown("countdown-26", "2025-07-27");
-    startCountdown("countdown-27", "2025-07-27");
-    startCountdown("countdown-28", "2025-07-26");
-    startCountdown("countdown-29", "2025-07-20");
-    startCountdown("countdown-30", "2025-07-12");
-    startCountdown("countdown-31", "2025-07-11");
-    startCountdown("countdown-32", "2025-07-06");
-    startCountdown("countdown-33", "2025-07-05");
-    startCountdown("countdown-34", "2025-07-04");
-    startCountdown("countdown-35", "2025-07-01");
-    startCountdown("countdown-36", "2025-06-29");
-    startCountdown("countdown-37", "2025-06-25");
-    startCountdown("countdown-38", "2025-06-23");
-    startCountdown("countdown-39", "2025-06-21");
-    startCountdown("countdown-40", "2025-06-21");
-    startCountdown("countdown-41", "2025-06-17");
-    startCountdown("countdown-42", "2025-06-12");
-    startCountdown("countdown-43", "2025-06-12");
-    startCountdown("countdown-44", "2025-06-11");
-    startCountdown("countdown-45", "2025-06-10");
-    startCountdown("countdown-46", "2025-06-10");
-    startCountdown("countdown-47", "2025-06-08");
-    startCountdown("countdown-48", "2025-06-07");
-    startCountdown("countdown-49", "2025-06-06");
-    startCountdown("countdown-50", "2025-06-06");
-    startCountdown("countdown-51", "2025-06-06");
-    startCountdown("countdown-52", "2025-06-02");
-    startCountdown("countdown-53", "2025-06-02");
-    startCountdown("countdown-54", "2025-06-02");
-    startCountdown("countdown-55", "2025-06-02");
-    startCountdown("countdown-56", "2025-06-01");
-    startCountdown("countdown-57", "2025-05-27");
-    startCountdown("countdown-58", "2025-05-24");
-    startCountdown("countdown-59", "2025-05-23");
-    startCountdown("countdown-60", "2025-05-22");
-    startCountdown("countdown-61", "2025-05-20");
-    startCountdown("countdown-62", "2025-05-20");
-    startCountdown("countdown-63", "2025-05-19");
-    startCountdown("countdown-64", "2025-05-19");
-    startCountdown("countdown-65", "2025-05-17");
-    startCountdown("countdown-66", "2025-05-15");
-    startCountdown("countdown-67", "2025-05-13");
-    startCountdown("countdown-68", "2025-05-13");
-    startCountdown("countdown-69", "2025-05-13");
-    startCountdown("countdown-70", "2025-05-12");
-    startCountdown("countdown-71", "2025-05-12");
-    startCountdown("countdown-72", "2025-05-11");
-    startCountdown("countdown-73", "2025-05-11");
-    startCountdown("countdown-74", "2025-05-10");
-    startCountdown("countdown-75", "2025-05-09");
-    startCountdown("countdown-76", "2025-05-08");
-    startCountdown("countdown-77", "2025-05-08");
-    startCountdown("countdown-78", "2025-05-08");
-    startCountdown("countdown-79", "2025-05-07");
-    startCountdown("countdown-80", "2025-05-07");
-    startCountdown("countdown-81", "2025-05-06");
-    startCountdown("countdown-82", "2025-05-06");
-    startCountdown("countdown-83", "2025-05-06");
-    startCountdown("countdown-84", "2025-05-06");
-    startCountdown("countdown-85", "2025-05-05");
-    startCountdown("countdown-86", "2025-05-05");
-    startCountdown("countdown-87", "2025-05-05");
-    startCountdown("countdown-88", "2025-05-05");
-    startCountdown("countdown-89", "2025-05-05");
+    setInterval(updateAllCountdowns, 1000);
 
     // Výpočet aktuálních recenzí PunisherEDNA
     const startDate = new Date("2025-05-04");
@@ -432,14 +364,12 @@
       }
     }
 
-    // Pokud je poslední, vlož nakonec
     if (!inserted) {
       const newRow = table.insertRow();
       newRow.classList.add("punisher-row");
       newRow.innerHTML = `<td>${rows.length + 1}</td><td><a href="2012.html" target="_blank">PunisherEDNA</a></td><td>${currentPunisherReviews}</td><td>0</td><td>dnes</td><td>-</td>`;
     }
 
-    // Aktualizace pořadí ve sloupci
     Array.from(table.rows).forEach((row, idx) => {
       row.cells[0].textContent = idx + 1;
     });
@@ -519,6 +449,7 @@
     // Inicializace po načtení stránky
     document.addEventListener("DOMContentLoaded", () => {
       fillUserDropdown();
+      updateAllCountdowns();
     });
   </script>
 </body>
