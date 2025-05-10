@@ -699,9 +699,12 @@ const target = new Date(targetDate);
   const input = document.getElementById("searchInput").value.toLowerCase();
   const selectedCountry = document.getElementById("countryFilter").value;
 
-  document.querySelectorAll(".user-card").forEach(card => {
-    const username = card.querySelector(".username:last-of-type").textContent.toLowerCase();
-    const flag = card.querySelector(".flag").textContent;
+  const userList = document.getElementById("userList");
+  userList.innerHTML = "";
+
+  const filteredData = [...data].filter(user => {
+    const username = user.username.toLowerCase();
+    const flag = user.flag;
 
     const matchesName = username.includes(input);
     const matchesCountry =
@@ -709,9 +712,39 @@ const target = new Date(targetDate);
       (selectedCountry === "other" && !["🇨🇿", "🇸🇰"].includes(flag)) ||
       flag === selectedCountry;
 
-    card.style.display = matchesName && matchesCountry ? "flex" : "none";
+    return matchesName && matchesCountry;
   });
+
+  const sortedData = filteredData.sort((a, b) => b.reviews - a.reviews);
+
+  sortedData.forEach((user, index) => {
+    const card = document.createElement("div");
+    card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
+    card.innerHTML = `
+      <div class="user-info">
+        <span class="username">#${index + 1}</span>
+        <span class="flag">${user.flag}</span>
+        <img src="${user.avatar || 'default-avatar.png'}" alt="${user.username}" class="avatar">
+        <span class="username">${user.username}</span>
+      </div>
+      <div class="user-stats">
+        <div class="reviews">${user.reviews}</div>
+        <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
+      </div>`;
+    userList.appendChild(card);
+  });
+
+  updateAllCountdowns();
+  updateSimulation();
 }
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderList(); // NECH renderList(), inak je `data` prázdné!
+  document.getElementById("searchInput").addEventListener("input", filterList);
+  document.getElementById("countryFilter").addEventListener("change", filterList);
+});
   </script>
   <footer style="text-align: center; padding: 1rem; font-size: 0.8rem; color: var(--text-light); background: var(--surface-dark); border-top: 1px solid var(--border-dark);">
   Copyright © 2025 Matúš Bereš, s.r.o. Všechna práva vyhrazena
