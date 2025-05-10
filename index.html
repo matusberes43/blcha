@@ -8,6 +8,14 @@
   <title>Žebříček recenzentů</title>
   <style>
   
+  .github-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Bez rámiku */
+}
+  
   .avatar {
   width: 24px;
   height: 24px;
@@ -478,7 +486,7 @@
     const data = [
      { username: "corpSy", flag: "🇸🇰", reviews: 23872, daysToOvertake: 482, overtakeDate: "2026-08-29", avatar: "IMG_9142.jpeg" },
       { username: "T2", flag: "🇸🇰", reviews: 19983, daysToOvertake: 385, overtakeDate: "2026-05-24", avatar: "IMG_9145.jpeg" },
-      { username: "PunisherEDNA", flag: "🇨🇿", reviews: 5019, daysToOvertake: 1000, overtakeDate: "0000-00-00", avatar: "IMG_9221.jpeg" },
+      { username: "PunisherEDNA", flag: "🇨🇿", reviews: 5019, daysToOvertake: 1000, overtakeDate: "0000-00-00", avatar: "IMG_9221.jpeg", fans: 24, ratings: 4964 },
       { username: "Marze", flag: "🇨🇿", reviews: 19026, daysToOvertake: 361, overtakeDate: "2026-04-30", avatar: "IMG_9147.jpeg" },
       { username: "rivah", flag: "🇨🇿", reviews: 19044, daysToOvertake: 343, overtakeDate: "2026-04-12", avatar: "IMG_9146.jpeg" },
       { username: "sator", flag: "🇨🇿", reviews: 16742, daysToOvertake: 304, overtakeDate: "2026-03-04", avatar: "IMG_9148.jpeg" },
@@ -552,7 +560,8 @@
 { username: "pornogrind", flag: "🇨🇿", reviews: 4877, daysToOvertake: 7, overtakeDate: "2025-05-11", avatar: "IMG_9220.jpeg" },
     ];
 
-    function renderList() {
+    
+function renderList() {
   const userList = document.getElementById("userList");
   userList.innerHTML = "";
   const sortedData = [...data].sort((a, b) => b.reviews - a.reviews);
@@ -560,22 +569,28 @@
     const card = document.createElement("div");
     card.className = `user-card ${user.daysToOvertake <= 30 ? 'month-warning' : ''} ${user.username === "PunisherEDNA" ? 'punisher' : ''}`;
     card.innerHTML = `
-      <div class="user-info">
-        <span class="username">#${index + 1}</span>
-        <span class="flag">${user.flag}</span>
-        <img src="${user.avatar || 'default-avatar.png'}" alt="${user.username}" class="avatar">
-        <span class="username">${user.username}</span>
-      </div>
-      <div class="user-stats">
-        <div class="reviews">${user.reviews}</div>
-        <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
-      </div>`;
+  <div class="user-info">
+  <span class="username">#${index + 1}</span>
+  <span class="flag">${user.flag}</span>
+  <img src="${user.avatar}" class="avatar" alt="${user.username}">
+  <span class="username">${user.username}</span>
+<img src="DED5B744-E3EC-49CF-B506-D1B4C561ADEF.png" class="github-icon" alt="github" style="margin-left: 4px;">
+<span style="color: var(--danger-color); font-weight: bold; font-size: 0.75rem; margin-left: 6px;">
+  ${user.fans !== undefined ? user.fans : ''}
+</span>
+</div>
+  <div class="user-stats">
+    <div class="reviews">${user.reviews}</div>
+    <div style="font-size: 0.65rem; color: #bbb;">
+      ${user.ratings !== undefined ? user.ratings + ' hodnocení' : ''}
+    </div>
+    <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
+  </div>`;
     userList.appendChild(card);
   });
+  updateAllCountdowns();
   updateSimulation();
 }
-
-    
 
     function updateAllCountdowns() {
       document.querySelectorAll("[id^=countdown]").forEach(span => {
@@ -724,11 +739,18 @@ const target = new Date(targetDate);
       <div class="user-info">
         <span class="username">#${index + 1}</span>
         <span class="flag">${user.flag}</span>
-        <img src="${user.avatar || 'default-avatar.png'}" alt="${user.username}" class="avatar">
+      <img src="${user.avatar}" class="avatar" alt="${user.username}">
         <span class="username">${user.username}</span>
+        <img src="DED5B744-E3EC-49CF-B506-D1B4C561ADEF.png" class="github-icon" alt="github" style="margin-left: 4px;">
+        <span style="color: var(--danger-color); font-weight: bold; font-size: 0.75rem; margin-left: 6px;">
+          ${user.fans !== undefined ? user.fans : ''}
+        </span>
       </div>
       <div class="user-stats">
         <div class="reviews">${user.reviews}</div>
+        <div style="font-size: 0.65rem; color: #bbb;">
+          ${user.ratings !== undefined ? user.ratings + ' hodnocení' : ''}
+        </div>
         <div class="countdown" id="countdown-${index + 1}" data-target-date="${user.overtakeDate}"></div>
       </div>`;
     userList.appendChild(card);
@@ -737,7 +759,6 @@ const target = new Date(targetDate);
   updateAllCountdowns();
   updateSimulation();
 }
-
 
 
 document.addEventListener("DOMContentLoaded", () => {
