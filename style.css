@@ -1,1 +1,54 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+
+mongoose.connect('mongodb://127.0.0.1:27017/cmsdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const Article = mongoose.model('Article', {
+  title: String,
+  content: String
+});
+const Review = mongoose.model('Review', {
+  title: String,
+  rating: Number,
+  text: String
+});
+const Post = mongoose.model('Post', {
+  content: String
+});
+
 app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', async (req, res) => {
+  const articles = await Article.find();
+  const reviews = await Review.find();
+  const posts = await Post.find();
+  res.render('index', { articles, reviews, posts });
+});
+
+app.get('/new-article', (req, res) => res.render('new-article'));
+app.post('/new-article', async (req, res) => {
+  await Article.create(req.body);
+  res.redirect('/');
+});
+
+app.get('/new-review', (req, res) => res.render('new-review'));
+app.post('/new-review', async (req, res) => {
+  await Review.create(req.body);
+  res.redirect('/');
+});
+
+app.get('/new-post', (req, res) => res.render('new-post'));
+app.post('/new-post', async (req, res) => {
+  await Post.create(req.body);
+  res.redirect('/');
+});
+
+app.listen(3000, () => console.log('Beží na http://localhost:3000'));
