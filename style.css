@@ -1,35 +1,193 @@
+server js
+
+
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const path = require('path');
+const app = express();
+
+mongoose.connect('mongodb://127.0.0.1:27017/cmsdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const Article = mongoose.model('Article', {
+  title: String,
+  content: String
+});
+
+const ADMIN_PASSWORD = process.env.ADMIN_PASS;
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', async (req, res) => {
+  const articles = await Article.find();
+  res.render('index', { articles });
+});
+
+app.get('/new-article', (req, res) => res.render('new-article'));
+
+app.post('/new-article', async (req, res) => {
+  if (req.body.adminPass !== ADMIN_PASSWORD) return res.sendStatus(403);
+  await Article.create(req.body);
+  res.redirect('/');
+});
+
+app.post('/delete-article/:id', async (req, res) => {
+  if (req.body.adminPass !== ADMIN_PASSWORD) return res.sendStatus(403);
+  await Article.findByIdAndDelete(req.params.id);
+  res.redirect('/');
+});
+
+app.get('/edit-article/:id', async (req, res) => {
+  const article = await Article.findById(req.params.id);
+  res.render('edit-article', { article });
+});
+
+app.post('/edit-article/:id', async (req, res) => {
+  if (req.body.adminPass !== ADMIN_PASSWORD) return res.sendStatus(403);
+  await Article.findByIdAndUpdate(req.params.id, {
+    title: req.body.title,
+    content: req.body.content
+  });
+  res.redirect('/');
+});
+
+app.listen(3000, () => console.log('Beží na http://localhost:3000'));
+
+
+.env
+
+ADMIN_PASS=tajneheslo
+
+
+style
+
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f0f0;
+  margin: 0;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+form {
+  margin-top: 0.5rem;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+
+index 
+
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Můj Web</title>
+  <title>Články</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <h1>Vítej v CMS</h1>
-  <a href="/new-article">Přidat článek</a> |
-  <a href="/new-review">Přidat recenzi</a> |
-  <a href="/new-post">Přidat příspěvek</a>
+<div class="container">
+  <h1>Články</h1>
+  <a href="/new-article">+ Nový článok</a>
+  <% articles.forEach(article => { %>
+    <div class="card">
+      <h2><%= article.title %></h2>
+      <p><%= article.content %></p>
+      <form action="/delete-article/<%= article._id %>" method="POST">
+        <input type="password" name="adminPass" placeholder="Heslo" required>
+        <button type="submit">Zmazať</button>
+      </form>
+      <a href="/edit-article/<%= article._id %>">Upraviť</a>
+    </div>
+  <% }) %>
+</div>
+</body>
+</html>
 
-  <h2>Články</h2>
-  <ul>
-    <% articles.forEach(article => { %>
-      <li><strong><%= article.title %></strong>: <%= article.content %></li>
-    <% }) %>
-  </ul>
 
-  <h2>Recenze</h2>
-  <ul>
-    <% reviews.forEach(review => { %>
-      <li><strong><%= review.title %></strong> - <%= review.rating %>/5: <%= review.text %></li>
-    <% }) %>
-  </ul>
 
-  <h2>Příspěvky</h2>
-  <ul>
-    <% posts.forEach(post => { %>
-      <li><%= post.content %></li>
-    <% }) %>
-  </ul>
+
+new article
+
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Nový článok</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Pridať nový článok</h1>
+  <form action="/new-article" method="POST">
+    <input type="text" name="title" placeholder="Názov" required>
+    <textarea name="content" placeholder="Obsah" required></textarea>
+    <input type="password" name="adminPass" placeholder="Heslo" required>
+    <button type="submit">Odoslať</button>
+  </form>
+</div>
+</body>
+</html>
+
+
+
+edit article
+
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Úprava článku</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Upraviť článok</h1>
+  <form action="/edit-article/<%= article._id %>" method="POST">
+    <input type="text" name="title" value="<%= article.title %>" required>
+    <textarea name="content" required><%= article.content %></textarea>
+    <input type="password" name="adminPass" placeholder="Heslo" required>
+    <button type="submit">Uložiť</button>
+  </form>
+</div>
 </body>
 </html>
