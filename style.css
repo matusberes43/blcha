@@ -1,43 +1,28 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const app = express();
+<!DOCTYPE html>
+<html lang="cs">
+<head><meta charset="UTF-8"><title>Nový článek</title></head>
+<body>
+  <h1>Nový článek</h1>
+  <form action="/new" method="POST">
+    <input type="text" name="title" placeholder="Název" required><br>
+    <textarea name="content" placeholder="Obsah" required></textarea><br>
+    <button type="submit">Přidat</button>
+  </form>
+</body>
+</html>
 
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
 
-// Pripojenie k MongoDB (lokálne)
-mongoose.connect('mongodb://127.0.0.1:27017/mujweb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
-// Príklad jednoduchého článkového modelu
-const Article = mongoose.model('Article', {
-  title: String,
-  content: String
-});
 
-// Úvodná stránka
-app.get('/', async (req, res) => {
-  const articles = await Article.find();
-  res.render('index', { articles });
-});
-
-// Stránka na nový článok
-app.get('/new', (req, res) => {
-  res.render('new');
-});
-
-// Pridanie článku
-app.post('/new', async (req, res) => {
-  const { title, content } = req.body;
-  await Article.create({ title, content });
-  res.redirect('/');
-});
-
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Server beží na http://localhost:${PORT}`);
-});
+<!DOCTYPE html>
+<html lang="cs">
+<head><meta charset="UTF-8"><title>Nový článek</title></head>
+<body>
+  <h1>Nový článek</h1>
+  <form action="/new" method="POST">
+    <input type="text" name="title" placeholder="Název" required><br>
+    <textarea name="content" placeholder="Obsah" required></textarea><br>
+    <button type="submit">Přidat</button>
+  </form>
+</body>
+</html>
