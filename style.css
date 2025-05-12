@@ -1,35 +1,43 @@
-body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000;
-  color: white;
-  font-family: 'Arial', sans-serif;
-}
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
 
-.neon-text {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #ff007f;
-  text-transform: uppercase;
-  text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
-  animation: blink 1s infinite alternate;
-}
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-@keyframes blink {
-  0% {
-    opacity: 1;
-    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
-  }
-  50% {
-    opacity: 0.7;
-    text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
-  }
-  100% {
-    opacity: 1;
-    text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
-  }
-}
+// Pripojenie k MongoDB (lokálne)
+mongoose.connect('mongodb://127.0.0.1:27017/mujweb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+// Príklad jednoduchého článkového modelu
+const Article = mongoose.model('Article', {
+  title: String,
+  content: String
+});
+
+// Úvodná stránka
+app.get('/', async (req, res) => {
+  const articles = await Article.find();
+  res.render('index', { articles });
+});
+
+// Stránka na nový článok
+app.get('/new', (req, res) => {
+  res.render('new');
+});
+
+// Pridanie článku
+app.post('/new', async (req, res) => {
+  const { title, content } = req.body;
+  await Article.create({ title, content });
+  res.redirect('/');
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server beží na http://localhost:${PORT}`);
+});
