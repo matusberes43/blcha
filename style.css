@@ -1,53 +1,58 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const app = express();
+<h1>Články</h1>
+<ul><% articles.forEach(a => { %><li><strong><%= a.title %></strong>: <%= a.content %></li><% }) %></ul>
 
-mongoose.connect('mongodb://127.0.0.1:27017/cmsdb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+<h1>Recenzie</h1>
+<ul><% reviews.forEach(r => { %><li><strong><%= r.title %></strong> – <%= r.rating %>/10<br><%= r.text %></li><% }) %></ul>
 
-const Article = mongoose.model('Article', {
-  title: String,
-  content: String
-});
-const Review = mongoose.model('Review', {
-  title: String,
-  rating: Number,
-  text: String
-});
-const Post = mongoose.model('Post', {
-  content: String
-});
+<h1>Príspevky</h1>
+<ul><% posts.forEach(p => { %><li><%= p.content %></li><% }) %></ul>
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+<hr>
+<a href="/new-article">+ Nový článok</a> |
+<a href="/new-review">+ Nová recenzia</a> |
+<a href="/new-post">+ Nový príspevok</a>
 
-app.get('/', async (req, res) => {
-  const articles = await Article.find();
-  const reviews = await Review.find();
-  const posts = await Post.find();
-  res.render('index', { articles, reviews, posts });
-});
 
-app.get('/new-article', (req, res) => res.render('new-article'));
-app.post('/new-article', async (req, res) => {
-  await Article.create(req.body);
-  res.redirect('/');
-});
 
-app.get('/new-review', (req, res) => res.render('new-review'));
-app.post('/new-review', async (req, res) => {
-  await Review.create(req.body);
-  res.redirect('/');
-});
+<h1>Nový článok</h1>
+<form action="/new-article" method="POST">
+  <input name="title" placeholder="Názov" required><br>
+  <textarea name="content" placeholder="Obsah" required></textarea><br>
+  <button>Pridať</button>
+</form>
 
-app.get('/new-post', (req, res) => res.render('new-post'));
-app.post('/new-post', async (req, res) => {
-  await Post.create(req.body);
-  res.redirect('/');
-});
 
-app.listen(3000, () => console.log('Beží na http://localhost:3000'));
+<h1>Nová recenzia</h1>
+<form action="/new-review" method="POST">
+  <input name="title" placeholder="Názov" required><br>
+  <input type="number" name="rating" min="0" max="10" required><br>
+  <textarea name="text" placeholder="Text recenzie" required></textarea><br>
+  <button>Pridať</button>
+</form>
+
+<h1>Nový príspevok</h1>
+<form action="/new-post" method="POST">
+  <textarea name="content" placeholder="Obsah" required></textarea><br>
+  <button>Pridať</button>
+</form>
+
+
+body {
+  font-family: sans-serif;
+  background: #f0f0f0;
+  padding: 2rem;
+}
+input, textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+button {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+
