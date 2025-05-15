@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <title>Profesionálny Web</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
+      <div class="nav-links">
+        <% if (typeof user !== 'undefined' && user) { %>
+          <span>Vitaj, <%= user.name %></span>
+          <a href="/logout">Odhlásiť</a>
+        <% } else { %>
+          <a href="/login">Prihlásenie</a>
+          <a href="/register">Registrácia</a>
+        <% } %>
+        <input type="text" placeholder="Vyhľadať...">
+      </div>
+    </nav>
+
+  <nav class="secondary-navbar">
+    <a href="#">Novinky</a>
+    <a href="#">Televize</a>
+    <a href="#">Kino</a>
+    <a href="#">VOD</a>
+    <a href="#">Žebříčky</a>
+    <a href="#">Blu-ray</a>
+    <a href="#">DVD</a>
+    <a href="#">Žánry</a>
+    <a href="#">Ocenění</a>
+    <a href="#">Uživatelé</a>
+    <a href="#">Diskuze</a>
+    <a href="#">Shop</a>
+  </nav>
+
+    
+
+
+
+
+<main class="race-style-layout">
+  
+  <section class="main-left">
+    <div class="main-article-box">
+      <div class="race-title">
+        <span>LIVE BLOG</span>
+        <h1>LIVE COVERAGE: Follow all the build-up ahead of the Emilia-Romagna Grand Prix weekend</h1>
+      </div>
+      <div class="main-article-img">
+        <img src="https://via.placeholder.com/600x600/cc0000/ffffff?text=Main+Article" alt="Main Feature">
+      </div>
+    </div>
+  </section>
+
+  <section class="main-right">
+    <div class="grid-right-articles">
+      <div class="grid-article">
+        <img src="https://via.placeholder.com/300x200/eeeeee/222222?text=Article+1" alt="">
+        <h3>NEWS</h3>
+        <p>Verstappen not expecting any ‘magic’ as Red Bull prepare updates at Imola</p>
+      </div>
+      <div class="grid-article">
+        <img src="https://via.placeholder.com/300x200/eeeeee/222222?text=Article+2" alt="">
+        <h3>NEWS</h3>
+        <p>Antonelli explains emotional and mental drain of home race...</p>
+      </div>
+      <div class="grid-article">
+        <img src="https://via.placeholder.com/300x200/eeeeee/222222?text=Article+3" alt="">
+        <h3>NEWS</h3>
+        <p>Piastri on McLaren’s challenges at Imola GP 2025 preview</p>
+      </div>
+      <div class="grid-article">
+        <img src="https://via.placeholder.com/300x200/eeeeee/222222?text=Article+4" alt="">
+        <h3>FEATURE</h3>
+        <p>NEED TO KNOW: Stats and facts before Emilia-Romagna GP</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+
+
+  </div>
+</body>
+</html>

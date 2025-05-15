@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <title>Prihlásenie</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Prihlásenie</h1>
+    <% if (typeof error !== 'undefined') { %>
+      <div class="error-list"><%= error %></div>
+    <% } %>
+    <form action="/login" method="POST">
+      <input type="text" name="identifier" placeholder="Email alebo Login" required><br>
+      <input type="password" name="password" placeholder="Heslo" required><br>
+      <button type="submit">Prihlásiť sa</button>
+    </form>
+  </div>
+</body>
+</html>

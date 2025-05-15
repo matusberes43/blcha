@@ -1,0 +1,16 @@
+
+<%- include('../../partials/header') %>
+<div class="container">
+  <h1>Nový článok</h1>
+  <form action="/admin/articles" method="POST">
+    <input type="text" name="title" placeholder="Nadpis" required>
+    <input type="text" name="subtitle" placeholder="Podnadpis">
+    <input type="text" name="category" placeholder="Kategória">
+    <input type="text" name="imageUrl" placeholder="URL obrázka">
+    <textarea name="content" id="editor" placeholder="Obsah článku" rows="10"></textarea>
+    <button type="submit">Publikovať</button>
+  </form>
+</div>
+<script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+<script>CKEDITOR.replace('editor');</script>
+<%- include('../../partials/footer') %>

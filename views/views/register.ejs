@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrácia</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Registrácia</h1>
+    <% var formData = typeof formData !== 'undefined' ? formData : {}; %>
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+      <ul class="error-list">
+        <% errors.forEach(function(error) { %>
+          <li><%= error %></li>
+        <% }); %>
+      </ul>
+    <% } %>
+    <form action="/register" method="POST">
+      <input type="text" name="name" placeholder="Meno" value="<%= formData.name || '' %>" required><br>
+      <input type="text" name="login" placeholder="Login" value="<%= formData.login || '' %>" required><br>
+      <input type="email" name="email" placeholder="Email" value="<%= formData.email || '' %>" required><br>
+      <input type="password" name="password" placeholder="Heslo" required><br>
+      <input type="password" name="confirmPassword" placeholder="Potvrď heslo" required><br>
+      <input type="number" name="age" placeholder="Vek" value="<%= formData.age || '' %>" required><br>
+      <input type="text" name="country" placeholder="Štát" value="<%= formData.country || '' %>" required><br>
+      <select name="gender" required>
+        <option value="">Pohlavie</option>
+        <option value="muž" <%= formData.gender === 'muž' ? 'selected' : '' %>>Muž</option>
+        <option value="žena" <%= formData.gender === 'žena' ? 'selected' : '' %>>Žena</option>
+      </select><br>
+      <textarea name="bio" placeholder="Niečo o sebe"><%= formData.bio || '' %></textarea><br>
+      <button type="submit">Registrovať</button>
+    </form>
+  </div>
+  <script src="/js/strength.js"></script>
+</body>
+</html>

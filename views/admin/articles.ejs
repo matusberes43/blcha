@@ -1,0 +1,14 @@
+
+<%- include('../../partials/header') %>
+<div class="container">
+  <h1>Správa článkov</h1>
+  <a href="/admin/articles/new">+ Nový článok</a>
+  <ul>
+    <% articles.forEach(article => { %>
+      <li>
+        <strong><%= article.title %></strong> – <%= article.createdAt.toLocaleDateString() %>
+      </li>
+    <% }) %>
+  </ul>
+</div>
+<%- include('../../partials/footer') %>

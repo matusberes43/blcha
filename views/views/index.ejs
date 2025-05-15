@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <title>Profesionálny Web</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="logo">LOGO</div>
+      <div class="nav-links">
+        <% if (typeof user !== 'undefined' && user) { %>
+          <span>Vitaj, <%= user.name %></span>
+          <a href="/logout">Odhlásiť</a>
+        <% } else { %>
+          <a href="/login">Prihlásenie</a>
+          <a href="/register">Registrácia</a>
+        <% } %>
+        <input type="text" placeholder="Vyhľadať...">
+      </div>
+    </nav>
+
+  <nav class="secondary-navbar">
+    <a href="#">Novinky</a>
+    <a href="#">Televize</a>
+    <a href="#">Kino</a>
+    <a href="#">VOD</a>
+    <a href="#">Žebříčky</a>
+    <a href="#">Blu-ray</a>
+    <a href="#">DVD</a>
+    <a href="#">Žánry</a>
+    <a href="#">Ocenění</a>
+    <a href="#">Uživatelé</a>
+    <a href="#">Diskuze</a>
+    <a href="#">Shop</a>
+  </nav>
+
+    <main>
+      <section class="main-article" style="position: relative;">
+        <img src="https://via.placeholder.com/800x400" alt="Najnovší článok">
+        <h1>Názov najnovšieho článku</h1>
+      </section>
+      <section class="older-articles">
+        <div class="article" style="position: relative;">
+          <img src="https://via.placeholder.com/200x100" alt="">
+          <p>Starší článok 1</p>
+        </div>
+        <div class="article" style="position: relative;">
+          <img src="https://via.placeholder.com/200x100" alt="">
+          <p>Starší článok 2</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
